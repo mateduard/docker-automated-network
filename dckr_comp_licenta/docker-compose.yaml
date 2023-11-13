@@ -1,0 +1,61 @@
+version: "4.15.0"
+services:
+    CM:
+        image: docker/getting-started
+        container_name: CMc
+        cap_add:
+            - NET_ADMIN
+        networks:
+            reteaua1:
+                priority: 1000 # eth0
+                ipv4_address: "172.18.0.2"
+            reteaua2:
+                priority: 500 # eth1
+                ipv4_address: "172.19.0.2"
+    R2:
+        image: docker/getting-started
+        container_name: R2c
+        cap_add:
+            - NET_ADMIN
+        networks:
+            reteaua2:
+                priority: 1000 # eth0
+                ipv4_address: "172.19.0.5"
+            reteaua5:
+                priority: 500 # eth1
+                ipv4_address: "172.22.0.2"
+    R1:
+        image: docker/getting-started
+        container_name: R1c
+        cap_add:
+            - NET_ADMIN
+        networks:
+            reteaua1:
+                priority: 1000 # eth0
+                ipv4_address: "172.18.0.5"
+            reteaua3:
+                priority: 500 # eth1
+                ipv4_address: "172.20.0.2"
+    R3:
+        image: docker/getting-started
+        container_name: R3c
+        cap_add:
+            - NET_ADMIN
+        networks:
+            reteaua3:
+                priority: 1000 # eth0
+                ipv4_address: "172.20.0.5"
+            reteaua4:
+                priority: 500 # eth1
+                ipv4_address: "172.21.0.2"
+networks:
+    reteaua1:
+        external: true
+    reteaua2:
+        external: true
+    reteaua3:
+        external: true
+    reteaua4:
+        external: true
+    reteaua5:
+        external: true
